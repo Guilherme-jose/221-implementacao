@@ -3,8 +3,6 @@ from account import account
 from login_screen import login_screen
 
 
-
-
 root = tk.Tk()
 
 root.geometry("1600x900")

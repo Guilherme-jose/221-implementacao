@@ -20,7 +20,7 @@ class account:
     
     def send_verification_email(self):
         # Code to send a verification email
-        sender_email = "guilherme.j.lopes@ufv.br"
+        sender_email = "verumcarboapp@gmail.com"
         receiver_email = self.email
         subject = "Account Verification"
         message = "Código de verificação: \n\n" + self.generate_verification_code() + '\n'
@@ -31,13 +31,24 @@ class account:
         msg['From'] = sender_email
         msg['To'] = receiver_email
         
-        # Send the email
-        with smtplib.SMTP('smtp.gmail.com', 587) as server:
-            server.starttls()
-            server.login(sender_email, "Ash&314ka2-101074")
-            server.send_message(msg)
+        # currently broken, google blocks 'less secure apps'
+        
+        #with smtplib.SMTP('smtp.gmail.com', 587) as server:
+        #    server.starttls()
+        #    server.login(sender_email, "verumCarbo-1408")
+        #    server.send_message(msg)
 
     def login(self):
-        # Code to log the user in
+        # checks local file for username and password
         print(f"Logging in as {self.username}...")
+        
+    def register(self):
+        # Code to register a new account
+        print(f"Registering as {self.username}...")
+        
+        with open('accounts.txt', 'a') as f:
+            f.write(f"{self.username}, {self.password}, {self.email}, {self.phone_number}\n")
+        
+        self.send_verification_email()
+        
     

@@ -1,39 +1,51 @@
 import tkinter as tk
 from create_account_screen import create_account_screen
+from account import account
 
 class login_screen():
     def __init__(self, root):
         self.root = root
          
     def login(self):
-        pass
+        acc = account(self.username_entry.get(), self.password_entry.get())
+        acc.login()
     
     def create_account(self):
+        self.hide()
         ca_screen = create_account_screen(self.root)
         ca_screen.show()
+        
     
+    def hide(self):
+        self.username_label.pack_forget()
+        self.username_entry.pack_forget()
+        self.password_label.pack_forget()
+        self.password_entry.pack_forget()
+        self.login_button.pack_forget()
+        self.create_account_button.pack_forget()
+        
     def show(self):
         # Create the username label and entry field
-        username_label = tk.Label(self.root, text="Username:")
-        username_label.pack()
-        username_entry = tk.Entry(self.root)
-        username_entry.pack()
+        self.username_label = tk.Label(self.root, text="Username:")
+        self.username_label.pack()
+        self.username_entry = tk.Entry(self.root)
+        self.username_entry.pack()
 
         # Create the password label and entry field
-        password_label = tk.Label(self.root, text="Password:")
-        password_label.pack()
-        password_entry = tk.Entry(self.root, show="*")
-        password_entry.pack()
+        self.password_label = tk.Label(self.root, text="Password:")
+        self.password_label.pack()
+        self.password_entry = tk.Entry(self.root, show="*")
+        self.password_entry.pack()
 
         # Create the login button
-        login_button = tk.Button(self.root, text="Login", command=self.login)
-        login_button.pack()
+        self.login_button = tk.Button(self.root, text="Login", command=self.login)
+        self.login_button.pack()
 
 
 
         # Create the create account button
-        create_account_button = tk.Button(self.root, text="Create Account", command=self.create_account)
-        create_account_button.pack()
+        self.create_account_button = tk.Button(self.root, text="Create Account", command=self.create_account)
+        self.create_account_button.pack()
 
         self.root.pack_propagate(0)
         self.root.grid_rowconfigure(0, weight=1)
@@ -42,12 +54,12 @@ class login_screen():
         frame = tk.Frame(self.root)
         frame.pack(fill=tk.BOTH, expand=True)
 
-        username_label.pack(pady=10)
-        username_entry.pack(pady=10)
-        password_label.pack(pady=10)
-        password_entry.pack(pady=10)
-        login_button.pack(pady=10)
-        create_account_button.pack(pady=10)
+        self.username_label.pack(pady=10)
+        self.username_entry.pack(pady=10)
+        self.password_label.pack(pady=10)
+        self.password_entry.pack(pady=10)
+        self.login_button.pack(pady=10)
+        self.create_account_button.pack(pady=10)
 
         frame.grid_rowconfigure(0, weight=1)
         frame.grid_columnconfigure(0, weight=1)
