@@ -1,4 +1,16 @@
-import tkinter
+import tkinter as tk
+from account import account
+from login_screen import login_screen
 
-root = tkinter.Tk()
+
+
+
+root = tk.Tk()
+
+root.geometry("1600x900")
+
+login = login_screen(root)
+
+login.show()
+
 root.mainloop()
