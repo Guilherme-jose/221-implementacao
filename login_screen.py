@@ -1,8 +1,9 @@
 import tkinter as tk
 from create_account_screen import create_account_screen
 from account import account
+from screen import screen
 
-class login_screen():
+class login_screen(screen):
     def __init__(self, root):
         self.root = root
          

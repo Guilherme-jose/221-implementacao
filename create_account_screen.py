@@ -1,18 +1,11 @@
 import tkinter as tk
 from account import account
+from screen import screen
 
-class create_account_screen():
+class create_account_screen(screen):
     def __init__(self, root):
         self.root = root
     
-    def pop_up(self, message='Erro'):
-        popup = tk.Tk()
-        popup.wm_title("!")
-        label = tk.Label(popup, text=message)
-        label.pack(side="top", fill="x", pady=10)
-        B1 = tk.Button(popup, text="Okay", command = popup.destroy)
-        B1.pack()
-        popup.mainloop()
         
     def check_fields(self, username, password, email, phone_number):
         if len(password) < 4:
