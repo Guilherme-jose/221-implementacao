@@ -4,11 +4,42 @@ from account import account
 class create_account_screen():
     def __init__(self, root):
         self.root = root
+    
+    def pop_up(self, message='Erro'):
+        popup = tk.Tk()
+        popup.wm_title("!")
+        label = tk.Label(popup, text=message)
+        label.pack(side="top", fill="x", pady=10)
+        B1 = tk.Button(popup, text="Okay", command = popup.destroy)
+        B1.pack()
+        popup.mainloop()
+        
+    def check_fields(self, username, password, email, phone_number):
+        if len(password) < 4:
+            self.pop_up('Senha muito curta')
+            return False
+        if username == '' or email == '' or phone_number == '':
+            self.pop_up('Campos vazios')
+            return False
+        if '@' not in email or '.' not in email:
+            self.pop_up('Email inválido')
+            return False
+        if len(phone_number) != 10 and len(phone_number) != 11:
+            self.pop_up('Número de telefone inválido')
+            return False
+        
+        
+        
+        return True
         
     def create_account(self):
-        acc = account(self.username_entry.get(), self.password_entry.get(), self.email_entry.get(), self.phone_number_entry.get())
-        acc.register()
-    
+        if self.check_fields(self.username_entry.get(), self.password_entry.get(), self.email_entry.get(), self.phone_number_entry.get()):
+            acc = account(self.username_entry.get(), self.password_entry.get(), self.email_entry.get(), self.phone_number_entry.get())
+            acc.register()
+            self.pop_up('Conta criada com sucesso')
+            
+            #switch to main screen
+        
     def show(self):
         # Create the username label and entry field
         username_label = tk.Label(self.root, text="Username:")
@@ -37,7 +68,7 @@ class create_account_screen():
         # Create the create account button
         create_account_button = tk.Button(self.root, text="Create Account", command=self.create_account)
         create_account_button.pack()
-
+        
         username_label.pack(pady=10)
         self.username_entry.pack(pady=10)
         password_label.pack(pady=10)
@@ -47,8 +78,4 @@ class create_account_screen():
         phone_number_label.pack(pady=10)
         self.phone_number_entry.pack(pady=10)
         create_account_button.pack(pady=10)
-
-        frame = tk.Frame(self.root)
-
-        frame.grid_rowconfigure(0, weight=1)
-        frame.grid_columnconfigure(0, weight=1)
+        

@@ -51,8 +51,7 @@ class login_screen():
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
-        frame = tk.Frame(self.root)
-        frame.pack(fill=tk.BOTH, expand=True)
+
 
         self.username_label.pack(pady=10)
         self.username_entry.pack(pady=10)
@@ -61,5 +60,3 @@ class login_screen():
         self.login_button.pack(pady=10)
         self.create_account_button.pack(pady=10)
 
-        frame.grid_rowconfigure(0, weight=1)
-        frame.grid_columnconfigure(0, weight=1)
