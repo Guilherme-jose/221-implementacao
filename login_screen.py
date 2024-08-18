@@ -2,14 +2,18 @@ import tkinter as tk
 from create_account_screen import create_account_screen
 from account import account
 from screen import screen
+from main_screen import main_screen
 
 class login_screen(screen):
     def __init__(self, root):
         self.root = root
          
     def login(self):
-        acc = account(self.username_entry.get(), self.password_entry.get())
-        acc.login()
+        acc = account()
+        if acc.login(self.username_entry.get(), self.password_entry.get()):
+            self.hide()
+            main = main_screen(self.root)
+            main.show()
     
     def create_account(self):
         self.hide()

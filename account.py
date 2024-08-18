@@ -3,7 +3,7 @@ from email.mime.text import MIMEText
 import random
 
 class account:
-    def __init__(self, username, password, email='', phone_number='', verified=False):
+    def __init__(self, username='', password='', email='', phone_number='', verified=False):
         self.username = username
         self.password = password
         self.email = email
@@ -38,10 +38,24 @@ class account:
         #    server.login(sender_email, "verumCarbo-1408")
         #    server.send_message(msg)
 
-    def login(self):
-        # checks local file for username and password
-        print(f"Logging in as {self.username}...")
-        
+    def login(self, username, password):
+        f = open('accounts.txt', 'r')
+        lines = f.readlines()
+        f.close()
+       
+        for line in lines:
+            data = line.split(', ')
+            if data[0] == username and data[1] == password:
+                self.username = username
+                self.password = password
+                self.email = data[2]
+                self.phone_number = data[3]
+                
+                print(f"Logged in as {username}!")
+                return True
+        print("Login failed!")
+        return False
+               
     def register(self):
         # Code to register a new account
         print(f"Registering as {self.username}...")

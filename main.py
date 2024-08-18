@@ -1,5 +1,4 @@
 import tkinter as tk
-from account import account
 from login_screen import login_screen
 
 
