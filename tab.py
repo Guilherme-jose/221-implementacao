@@ -14,6 +14,7 @@ class tab:
         pass
     
     def open_event_screen(self):
+
         popup_window = Toplevel(self.root)
         titulo_label = ttk.Label(popup_window, text='Título:')
         titulo_label.pack()
@@ -34,6 +35,16 @@ class tab:
         beneficiario_label.pack()
         beneficiario_entry = ttk.Entry(popup_window)
         beneficiario_entry.pack()
+
+        local_label = ttk.Label(popup_window, text='Local:')
+        local_label.pack()
+        local_entry = ttk.Entry(popup_window)
+        local_entry.pack()
+        
+        data_label = ttk.Label(popup_window, text='Data:')
+        data_label.pack()
+        data_entry = ttk.Entry(popup_window)
+        data_entry.pack()
         
         upload_button = ttk.Button(popup_window, text='Adicionar anexo', command=self.upload_file)
         upload_button.pack(side=tk.RIGHT)
@@ -44,11 +55,24 @@ class tab:
             valor = valor_entry.get()
             responsavel = responsavel_entry.get()
             beneficiario = beneficiario_entry.get()
+            local = local_entry.get()
+            data = data_entry.get()
             
-            act = activity(titulo, valor, responsavel, beneficiario, 'social')
-            act.register()
-            del act
-        
+            if self.type == 'social':
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'social')
+                act.register()
+                del act
+
+            elif self.type == 'ambiente':
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'ambiente')
+                act.register()
+                del act
+
+            else:
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'governança')
+                act.register()
+                del act
+            
             popup_window.destroy()
             self.display_activities(self.type)
             
@@ -65,7 +89,7 @@ class tab:
         for act in activities:
             act = act.split(',')
             if act[0] == type:
-                act_label = ttk.Label(self.root, text=act[1] + ' ' + act[2] + ' ' + act[3] + ' ' + act[4])
+                act_label = ttk.Label(self.root, text=act[1] + ' ' + act[2] + ' ' + act[3] + ' ' + act[4] + ' ' + act[5] + ' ' + act[6])
                 act_label.pack()
                 self.acts.append(act_label)
 
