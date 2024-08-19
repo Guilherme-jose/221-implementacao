@@ -7,12 +7,9 @@ class activity:
         self.local = local
         self.date = date
         self.type = type
-        self.description = description
+        self.description = description.replace('\n', ' ')
         self.file = file
         
     def register(self):
         with open('activities.txt', 'a') as f:
-            if self.file == None:
-                f.write(f"{self.type}, {self.name}, {self.value}, {self.asignee}, {self.beneficiary}, {self.local}, {self.date}, {self.description}, {'-'.encode('utf-8')}\n")
-            else:
-                f.write(f"{self.type}, {self.name}, {self.value}, {self.asignee}, {self.beneficiary}, {self.local}, {self.date}, {self.description}, {self.file.get_path()}\n")
+            f.write(f"{self.type}, {self.name}, {self.value}, {self.asignee}, {self.beneficiary}, {self.local}, {self.date}, {self.description}, -\n")

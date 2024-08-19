@@ -26,6 +26,6 @@ class relatorio_tab(tab):
         pdf.set_font('Arial', '', 12)
         for activity in activities:
             activity = activity.split(',')
-            pdf.cell(0, 10, f'{activity[1]}: {activity[5]}', ln=True)
+            pdf.cell(0, 10, f'{activity[1]}: {activity[7]}', ln=True)
 
         pdf.output('relatorio.pdf')

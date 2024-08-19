@@ -64,21 +64,11 @@ class tab:
             local = local_entry.get()
             data = data_entry.get()
             
-            if self.type == 'social':
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'social', descricao)
-                act.register()
-                del act
-
-            elif self.type == 'ambiente':
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'ambiente')
-                act.register()
-                del act
-
-            else:
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'governança')
-                act.register()
-                del act
+            act = activity(titulo, valor, responsavel, beneficiario, local, data, self.type, descricao)
             
+            act.register()
+            del act
+                
             popup_window.destroy()
             self.display_activities(self.type)
             
