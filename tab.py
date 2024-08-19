@@ -107,7 +107,7 @@ class tab:
                 del act
             
                 popup_window.destroy()
-                self.display_activities(self.type)
+                self.display_gasto(self.type)
                 
             button = ttk.Button(popup_window, text='Submit', command=submit)
             button.pack(side=tk.RIGHT)

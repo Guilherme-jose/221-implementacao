@@ -1,19 +1,3 @@
 a, a, a, a, -
 , , , , -
 , , , a, -
-social, a, a, a, aa, -
-social, s, ss, , s, -
-social, ss, ss, s, , -
-social, , , , a, -
-social, 123, 145, a, 156, -
-social, S, S, S, S, -
-social, a, a, a, a, -
-social, sb, sb, sb, sb, -
-social, sb, sb, sb, sb, -
-social, sbbb, sbbb, sbbb, sbbb, -
-social, cc, cc, cc, cc, -
-social, d, d, dd, d, -
-ambiente, a, a, a, a, -
-ambiente, b, b, b, b, -
-ambiente, c, c, c, c, -
-social, a, a, a, a, -

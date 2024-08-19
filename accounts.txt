@@ -3,4 +3,4 @@ a, a, as, s
 a, aaaa, a@a.c, aaaaaaaaaa
 b, bbbb, b@., ...........
 b, bbbb, b@b., bbbbbbbbbb
-, , , aasd, aaaa, a@a.c, 0123456789
+aasd, aaaa, a@a.c, 0123456789
