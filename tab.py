@@ -35,6 +35,11 @@ class tab:
         beneficiario_entry = ttk.Entry(popup_window)
         beneficiario_entry.pack()
         
+        description_label = ttk.Label(popup_window, text='Descrição:')
+        description_label.pack()
+        description_text_box = tk.Text(popup_window)
+        description_text_box.pack()
+        
         upload_button = ttk.Button(popup_window, text='Adicionar anexo', command=self.upload_file)
         upload_button.pack(side=tk.RIGHT)
         
@@ -44,8 +49,9 @@ class tab:
             valor = valor_entry.get()
             responsavel = responsavel_entry.get()
             beneficiario = beneficiario_entry.get()
+            descricao = description_text_box.get('1.0', tk.END)
             
-            act = activity(titulo, valor, responsavel, beneficiario, 'social')
+            act = activity(titulo, valor, responsavel, beneficiario, 'social', descricao)
             act.register()
             del act
         
