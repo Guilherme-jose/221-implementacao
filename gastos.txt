@@ -1,7 +1,0 @@
-ambiente, c, c, c, c, -
-ambiente, c, c, c, c, -
-ambiente, d, d, d, d, -
-ambiente, f, f, f, f, -
-ambiente, c, c, c, c, -
-ambiente, fg, g, g, g, -
-ambiente, tttt, tttt, tttt, tttt, -
