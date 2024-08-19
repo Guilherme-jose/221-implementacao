@@ -25,7 +25,8 @@ class relatorio_tab(tab):
 
         pdf.set_font('Arial', '', 12)
         for activity in activities:
-            activity = activity.split(',')
-            pdf.cell(0, 10, f'{activity[1]}: {activity[7]}', ln=True)
+            if activity[0] == 'social' or activity[0] == 'ambiente' or activity[0] == 'governanca':
+                activity = activity.split(',')
+                pdf.cell(0, 10, f'{activity[1]}: {activity[7]}', ln=True)
 
         pdf.output('relatorio.pdf')
