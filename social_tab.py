@@ -4,8 +4,8 @@ from tab import tab
 from activity import activity
 
 class social_tab(tab):
-    def __init__(self, root):
-        super().__init__(root)
+    def __init__(self, root, type='social'):
+        super().__init__(root, type)
     
     def upload_file(self):
         pass
@@ -15,6 +15,8 @@ class social_tab(tab):
         # Create a button to open the event screen
         open_event_button = ttk.Button(self.root, text='Open Event Screen', command=self.open_event_screen)
         open_event_button.pack()
+        
+        self.display_activities('social')
     
     
     
