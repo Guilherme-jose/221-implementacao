@@ -10,11 +10,11 @@ class create_account_screen(screen):
         
     def check_fields(self, username, password, email, phone_number):
         
-        with open('accounts.txt', 'r') as f:
-            accounts = f.read()
-        
-        if username in accounts:
-            self.pop_up('Nome de usuário já existe')
+        with open('users.txt', 'r') as f:
+            conteudo = f.read()
+        # Verifica se a palavra já está no arquivo
+        if username in conteudo:
+            self.pop_up("Este usuário já está registrado")
             return False
         
         if len(password) < 4:
