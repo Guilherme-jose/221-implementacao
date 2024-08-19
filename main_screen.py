@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from screen import screen
 from main_tab import main_tab
+from social_tab import social_tab
 
 class main_screen(screen):
     def __init__(self, root):
@@ -29,6 +30,9 @@ class main_screen(screen):
         
         mt = main_tab(tabs_ref[0])
         mt.show()
+        
+        st = social_tab(tabs_ref[2])
+        st.show()
 
         
         
