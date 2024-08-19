@@ -1,4 +1,4 @@
-class gastos:
+class governanca:
     def __init__(self, tipo, consumo, local, gasto, type='None', file=None):
         self.tipo = tipo
         self.consumo = consumo
@@ -8,7 +8,7 @@ class gastos:
         self.file = file
         
     def register(self):
-        with open('gastos.txt', 'a') as f:
+        with open('governança.txt', 'a') as f:
             if self.file == None:
                 f.write(f"{self.type}, {self.tipo}, {self.consumo}, {self.local}, {self.gasto}, {'-'}\n")
             else:

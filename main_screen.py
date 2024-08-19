@@ -4,6 +4,7 @@ from screen import screen
 from main_tab import main_tab
 from social_tab import social_tab
 from ambiente_tab import ambiente_tab
+from governanca_tab import governanca_tab
 
 class main_screen(screen):
     def __init__(self, root):
@@ -36,6 +37,9 @@ class main_screen(screen):
         st.show()
         
         st = social_tab(tabs_ref[2])
+        st.show()
+
+        st = governanca_tab(tabs_ref[3])
         st.show()
 
         
