@@ -5,8 +5,10 @@ from activity import activity
 
 
 class tab:
-    def __init__(self, root):
+    def __init__(self, root, type = ''):
         self.root = root
+        self.type = type
+        self.acts = []
         
     def show(self):
         pass
@@ -43,11 +45,26 @@ class tab:
             responsavel = responsavel_entry.get()
             beneficiario = beneficiario_entry.get()
             
-            act = activity(titulo, valor, responsavel, beneficiario)
+            act = activity(titulo, valor, responsavel, beneficiario, 'social')
             act.register()
             del act
         
             popup_window.destroy()
+            self.display_activities(self.type)
             
         button = ttk.Button(popup_window, text='Submit', command=submit)
         button.pack(side=tk.RIGHT)
+
+    def display_activities(self, type):
+        for i in self.acts:
+            i.pack_forget()
+            
+        f = open('activities.txt', 'r')
+        activities = f.readlines()
+        f.close()
+        for act in activities:
+            act = act.split(',')
+            if act[0] == type:
+                act_label = ttk.Label(self.root, text=act[1] + ' ' + act[2] + ' ' + act[3] + ' ' + act[4])
+                act_label.pack()
+                self.acts.append(act_label)
