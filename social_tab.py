@@ -1,6 +1,7 @@
 from tkinter import Toplevel, ttk
 import tkinter as tk
 from tab import tab
+from activity import activity
 
 class social_tab(tab):
     def __init__(self, root):
@@ -47,6 +48,10 @@ class social_tab(tab):
             valor = valor_entry.get()
             responsavel = responsavel_entry.get()
             beneficiario = beneficiario_entry.get()
+            
+            act = activity(titulo, valor, responsavel, beneficiario)
+            act.register()
+            del act
         
             popup_window.destroy()
             
