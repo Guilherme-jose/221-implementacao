@@ -5,7 +5,7 @@ from main_tab import main_tab
 from social_tab import social_tab
 from ambiente_tab import ambiente_tab
 from governanca_tab import governanca_tab
-from relatorio_tab import relatorio_tab
+from energy_tab import energy_tab
 
 class main_screen(screen):
     def __init__(self, root):
@@ -15,10 +15,10 @@ class main_screen(screen):
     
     def show(self):
         tab_control = ttk.Notebook(self.root)
-        tabs = ['MAIN', 'AMBIENTE', 'SOCIAL', 'GOVERNANÇA', 'RELATÓRIOS']
+        tabs = ['MAIN', 'AMBIENTE', 'SOCIAL', 'GOVERNANÇA', 'RELATÓRIOS', 'ENERGIA']
         tabs_ref = []
         
-        for i in range(1, 6):
+        for i in range(1, 7):
             tab = tk.Frame(tab_control)
             tab_control.add(tab, text=tabs[i-1])
             tabs_ref.append(tab)
@@ -34,17 +34,17 @@ class main_screen(screen):
         mt = main_tab(tabs_ref[0])
         mt.show()
 
-        at = ambiente_tab(tabs_ref[1])
-        at.show()
+        st = ambiente_tab(tabs_ref[1])
+        st.show()
         
         st = social_tab(tabs_ref[2])
         st.show()
 
-        gt = governanca_tab(tabs_ref[3])
-        gt.show()
-        
-        rt = relatorio_tab(tabs_ref[4])
-        rt.show()
+        st = governanca_tab(tabs_ref[3])
+        st.show()
+
+        st = energy_tab(tabs_ref[5])
+        st.show()
 
         
 
