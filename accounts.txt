@@ -1,3 +1,0 @@
-a, a, a, a
-a, a, as, s
-a, aaaa, a@a.c, aaaaaaaaaa
