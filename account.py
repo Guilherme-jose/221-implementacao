@@ -62,6 +62,9 @@ class account:
         
         with open('accounts.txt', 'a') as f:
             f.write(f"{self.username}, {self.password}, {self.email}, {self.phone_number}\n")
+
+        with open('users.txt', 'a') as f:
+            f.write(f"{self.username}, ")
         
         self.send_verification_email()
         

@@ -1,7 +1,2 @@
 a, a, a, a, -
 , , , , -
-, , , a, -
-social, a, a, a, aa, -
-social, s, ss, , s, -
-social, ss, ss, s, , -
-social, , , , a, -

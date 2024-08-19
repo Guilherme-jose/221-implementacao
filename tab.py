@@ -68,3 +68,4 @@ class tab:
                 act_label = ttk.Label(self.root, text=act[1] + ' ' + act[2] + ' ' + act[3] + ' ' + act[4])
                 act_label.pack()
                 self.acts.append(act_label)
+
