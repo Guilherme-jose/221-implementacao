@@ -12,4 +12,4 @@ class activity:
         
     def register(self):
         with open('activities.txt', 'a', encoding='utf-8') as f:
-            f.write(f"{self.type}, {self.name}, {self.value}, {self.asignee}, {self.beneficiary}, {self.local}, {self.date}, {self.description}, {self.file} -\n")
+            f.write(f"{self.type}, {self.name}, {self.value}, {self.asignee}, {self.beneficiary}, {self.local}, {self.date}, {self.description}, {self.file}\n")
