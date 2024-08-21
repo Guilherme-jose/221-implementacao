@@ -1,5 +1,7 @@
 import tkinter as tk
-from tkinter import Toplevel, ttk
+import os
+import shutil
+from tkinter import Toplevel, ttk, filedialog
 
 from activity import activity
 from consumo import consumo
@@ -10,11 +12,27 @@ class tab:
         self.root = root
         self.type = type
         self.acts = []
+        self.file = []
         
     def show(self):
         pass
     
     def open_event_screen(self):
+
+        def upload_file():
+            arquivos_selecionados = filedialog.askopenfilenames(title="Selecione os arquivos")
+
+            # Cria a pasta 'anexos' caso não exista
+            anexos = os.path.join(os.getcwd(), 'anexos')
+            if not os.path.exists(anexos):
+                os.makedirs(anexos)
+
+            # Copia os arquivos para a pasta 'anexos'
+            for arquivo in arquivos_selecionados:
+                nome_arquivo = os.path.basename(arquivo)
+                destino = os.path.join(anexos, nome_arquivo)
+                shutil.copy2(arquivo, destino)  # Copia o arquivo 
+                self.file.append(nome_arquivo)
 
         if self.type == 'energy':
             popup_window = Toplevel(self.root)
@@ -60,9 +78,8 @@ class tab:
             data_entry = ttk.Entry(popup_window)
             data_entry.pack()
             
-            upload_button = ttk.Button(popup_window, text='Adicionar anexo', command=self.upload_file)
+            upload_button = ttk.Button(popup_window, text='Adicionar anexo', command=upload_file)
             upload_button.pack(side=tk.RIGHT)
-            
             
         def submit():
             
@@ -80,22 +97,30 @@ class tab:
             
             
             if self.type == 'social':
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'social')
+                file = ';'.join(self.file)
+                self.file = []
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'social', '', file)
                 act.register()
                 del act
 
             elif self.type == 'ambiente':
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'ambiente')
+                file = ';'.join(self.file)
+                self.file = []
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'ambiente', '', file)
                 act.register()
                 del act
 
             elif self.type == 'energy':
-                act = consumo(consumos, periodo, 'energy')
+                file = ';'.join(self.file)
+                self.file = []
+                act = consumo(consumos, periodo, 'energy', file)
                 act.register()
                 del act
 
             else:
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'governança')
+                file = ';'.join(self.file)
+                self.file = []
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'governança', '', file)
                 act.register()
                 del act
             
