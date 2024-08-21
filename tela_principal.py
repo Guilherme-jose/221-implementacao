@@ -118,7 +118,3 @@ class Aplication:
         text_widget = Text(tab, wrap=WORD)
         text_widget.insert(INSERT, report_text)
         text_widget.pack(expand=1, fill=BOTH)
-
-# Criar a aplicação
-root = Tk()
-app = Application(root, "Nome do Usuário")
