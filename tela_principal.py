@@ -4,7 +4,7 @@ from PIL import Image, ImageTk
 from tkinter import simpledialog
 import os
 
-class Application:
+class Aplication:
     def __init__(self, root, nome_usuario):
         self.root = root
         self.nome_usuario = nome_usuario
