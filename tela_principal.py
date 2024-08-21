@@ -1,8 +1,10 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image, ImageTk
+from tkinter import simpledialog
+import os
 
-class Aplication:
+class Application:
     def __init__(self, root, nome_usuario):
         self.root = root
         self.nome_usuario = nome_usuario
@@ -46,7 +48,7 @@ class Aplication:
 
         # Adicionando o Notebook (abas) ao frame_1
         self.notebook = ttk.Notebook(self.frame_1)
-        
+
         # Criar as abas
         self.tab_main = Frame(self.notebook, bg="#e0ffff")
         self.tab_ambiente = Frame(self.notebook, bg="#e0ffff")
@@ -63,3 +65,60 @@ class Aplication:
 
         # Colocar o Notebook dentro do frame_1
         self.notebook.place(relwidth=1, relheight=1)
+
+        # Adicionar botões para escrever relatórios em cada aba
+        self.add_report_buttons()
+
+    def add_report_buttons(self):
+        tabs = [self.tab_main, self.tab_ambiente, self.tab_social, self.tab_governanca, self.tab_relatorios]
+        tab_names = ["Main", "Ambiente", "Social", "Governança", "Relatórios"]
+        
+        for i, tab in enumerate(tabs):
+            btn = Button(tab, text=f"Escrever Relatório {tab_names[i]}", command=lambda t=tab_names[i]: self.open_report_form(t))
+            btn.pack(pady=10)
+
+    def open_report_form(self, tab_name):
+        form_window = Toplevel(self.root)
+        form_window.title(f"Relatório - {tab_name}")
+
+        labels = ["Título", "Beneficiário", "Responsável", "Valor", "Local", "Data", "Descrição"]
+        entries = {}
+
+        for i, label_text in enumerate(labels):
+            Label(form_window, text=label_text).grid(row=i, column=0, padx=10, pady=5, sticky=W)
+            entry = Entry(form_window, width=50)
+            entry.grid(row=i, column=1, padx=10, pady=5)
+            entries[label_text] = entry
+
+        def save_report():
+            report_data = {label: entry.get() for label, entry in entries.items()}
+            report_text = "\n".join([f"{key}: {value}" for key, value in report_data.items()])
+            
+            file_path = f"{tab_name}_report.txt"
+            with open(file_path, "a") as file:
+                file.write(f"\n--- Novo Relatório ---\n{report_text}\n")
+            
+            self.display_report(tab_name)
+            form_window.destroy()
+
+        Button(form_window, text="Salvar Relatório", command=save_report).grid(row=len(labels), column=1, pady=10)
+
+    def display_report(self, tab_name):
+        file_path = f"{tab_name}_report.txt"
+        if not os.path.exists(file_path):
+            return
+        
+        with open(file_path, "r") as file:
+            report_text = file.read()
+
+        tab = self.notebook.nametowidget(self.notebook.select())
+        for widget in tab.winfo_children():
+            widget.destroy()
+        
+        text_widget = Text(tab, wrap=WORD)
+        text_widget.insert(INSERT, report_text)
+        text_widget.pack(expand=1, fill=BOTH)
+
+# Criar a aplicação
+root = Tk()
+app = Application(root, "Nome do Usuário")
