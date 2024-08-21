@@ -6,9 +6,6 @@ from consumo import consumo
 class energy_tab(tab):
     def __init__(self, root, type='energy'):
         super().__init__(root, type)
-    
-    def upload_file(self):
-        pass
         
     def show(self):
         ttk.Label(self.root, text='Consumo de Energia').pack()
