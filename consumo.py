@@ -10,4 +10,4 @@ class consumo:
             if self.file == None:
                 f.write(f"{self.type}, {self.consumos}, {self.periodo}, {'-'}\n")
             else:
-                f.write(f"{self.type}, {self.consumos}, {self.periodo}, {self.file.get_path()}\n")
+                f.write(f"{self.type}, {self.consumos}, {self.periodo}, {self.file}\n")
