@@ -1,3 +1,4 @@
 
 social, Doacao de comida, 200.00, Jose, Abrigo ABC, Vicosa, 01/01/2020, Estamos felizes em anunciar a doacao de alimentos para ajudar aqueles que mais precisam. Nossa missão é garantir que todos tenham acesso a refeições nutritivas e dignas, especialmente em momentos de dificuldade.  A doação inclui uma variedade de itens, cuidadosamente selecionados para atender a diferentes necessidades e preferências alimentares. , -
 social, Doacao de Roupas, 200.00, Jose, Abrigo ABC, Vicosa, 01/01/2020, 
+energy, a, a, -
