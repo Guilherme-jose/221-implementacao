@@ -37,7 +37,7 @@ class create_account_screen(screen):
     def create_account(self):
         if self.check_fields(self.username_entry.get(), self.password_entry.get(), self.email_entry.get(), self.phone_number_entry.get()):
             acc = account(self.username_entry.get(), self.password_entry.get(), self.email_entry.get(), self.phone_number_entry.get())
-            acc.register()
+            acc.register(self.username_entry.get(), self.password_entry.get(), self.email_entry.get(), self.phone_number_entry.get())
             
             
             self.hide()

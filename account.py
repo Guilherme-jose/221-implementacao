@@ -56,16 +56,21 @@ class account:
         print("Login failed!")
         return False
                
-    def register(self):
-        # Code to register a new account
-        print(f"Registering as {self.username}...")
-        
-        with open('accounts.txt', 'a') as f:
-            f.write(f"{self.username}, {self.password}, {self.email}, {self.phone_number}\n")
+    def register(self, username, password, email, phone_number):
+        if(username == "" or password == "" or email == "" or phone_number == "" 
+           or len(password) < 4 or '@' not in email or '.' not in email or 
+            (len(phone_number) != 10 and len(phone_number) != 11)) : 
+            return False
+        else :
+            print(f"Registering as {username}...")
+            
+            with open('accounts.txt', 'a') as f:
+                f.write(f"{username}, {password}, {email}, {phone_number}\n")
 
-        with open('users.txt', 'a') as f:
-            f.write(f"{self.username}, ")
-        
-        self.send_verification_email()
+            with open('users.txt', 'a') as f:
+                f.write(f"{username}, ")
+            
+            self.send_verification_email()
+            return True
         
     
