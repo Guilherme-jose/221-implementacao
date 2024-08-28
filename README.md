@@ -20,3 +20,5 @@ Execução:
 
 Apresentação: https://docs.google.com/presentation/d/1YQtQ5bwbpEzb_Slqi_9nAmAGSJhCuBwP-IfiSDEzNDM/edit?usp=sharing
     
+
+Testes de unidade: tests.txt
