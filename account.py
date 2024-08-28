@@ -56,16 +56,63 @@ class account:
         print("Login failed!")
         return False
                
-    def register(self):
-        # Code to register a new account
-        print(f"Registering as {self.username}...")
+    def register(self, username, password, email, phone_number):
+        with open('accounts.txt', 'r') as f:
+            conteudo = f.read()
         
-        with open('accounts.txt', 'a') as f:
-            f.write(f"{self.username}, {self.password}, {self.email}, {self.phone_number}\n")
+        if username in conteudo:
+            #self.pop_up("Este usuário já está registrado")
+            return False
+        else:
+            if(username == "" or password == "" or email == "" or phone_number == "" 
+            or len(password) < 4 or '@' not in email or '.' not in email or 
+                (len(phone_number) != 10 and len(phone_number) != 11)) : 
+                return False
+            else :
+                print(f"Registering as {username}...")
+                
+                with open('accounts.txt', 'a') as f:
+                    f.write(f"{username}, {password}, {email}, {phone_number}\n")
 
-        with open('users.txt', 'a') as f:
-            f.write(f"{self.username}, ")
+                with open('users.txt', 'a') as f:
+                    f.write(f"{username}, ")
+                
+                self.send_verification_email()
+                self.username = username
+                self.password = password
+                self.email = email
+                self.phone_number = phone_number
+                return True
+
         
-        self.send_verification_email()
+    def unregister(self, username):
+        f = open('accounts.txt', 'r')
+        lines = f.readlines()
+        f.close()
+        
+        f = open('accounts.txt', 'w')
+        for line in lines:
+            data = line.split(', ')
+            if data[0] != username:
+                f.write(line)
+        f.close()
+        
+        f = open('users.txt', 'r')
+        lines = f.readlines()
+        f.close()
+        
+        f = open('users.txt', 'w')
+        for line in lines:
+            data = line.split(', ')
+            if data[0] != username:
+                f.write(line)
+        f.close()
+        
+        self.username = ''
+        self.password = ''
+        self.email = ''
+        self.phone_number = ''
+        self.verified = False
+        print("Unregistered!")
         
     

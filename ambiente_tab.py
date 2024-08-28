@@ -5,9 +5,6 @@ from tab import tab
 class ambiente_tab(tab):
     def __init__(self, root, type='ambiente'):
         super().__init__(root, type)
-    
-    def upload_file(self):
-        pass
         
     def show(self):
         ttk.Label(self.root, text='Feitos Ambientais').pack()

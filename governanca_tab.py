@@ -5,9 +5,6 @@ from tab import tab
 class governanca_tab(tab):
     def __init__(self, root, type='governança'):
         super().__init__(root, type)
-    
-    def upload_file(self):
-        pass
         
     def show(self):
         ttk.Label(self.root, text='Feitos Governamentais').pack()

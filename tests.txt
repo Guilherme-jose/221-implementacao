@@ -1,0 +1,7 @@
+python -m pytest test_account.py
+python -m pytest test_ambiente_tab.py
+python -m pytest test_energy_tab.py
+python -m pytest test_governaca_tab.py
+python -m pytest test_social_tab.py
+python -m pytest test_main_tab.py
+python -m pytest test_activity.py

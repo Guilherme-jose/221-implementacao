@@ -11,6 +11,14 @@ root = tk.Tk()
 
 root.geometry("1600x900")
 
+root.configure(bg='#1e3743')
+
+root.option_add("*Label*Background", '#1e3743')
+
+root.option_add("*Label*Foreground", 'white')
+
+root.option_add("*Label.Font", "Arial 14")
+
 login = login_screen(root)
 
 login.show()
