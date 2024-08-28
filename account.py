@@ -71,6 +71,41 @@ class account:
                 f.write(f"{username}, ")
             
             self.send_verification_email()
+            self.username = username
+            self.password = password
+            self.email = email
+            self.phone_number = phone_number
             return True
+
+        
+    def unregister(self, username):
+        f = open('accounts.txt', 'r')
+        lines = f.readlines()
+        f.close()
+        
+        f = open('accounts.txt', 'w')
+        for line in lines:
+            data = line.split(', ')
+            if data[0] != username:
+                f.write(line)
+        f.close()
+        
+        f = open('users.txt', 'r')
+        lines = f.readlines()
+        f.close()
+        
+        f = open('users.txt', 'w')
+        for line in lines:
+            data = line.split(', ')
+            if data[0] != username:
+                f.write(line)
+        f.close()
+        
+        self.username = ''
+        self.password = ''
+        self.email = ''
+        self.phone_number = ''
+        self.verified = False
+        print("Unregistered!")
         
     
