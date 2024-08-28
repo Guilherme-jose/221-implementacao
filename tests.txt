@@ -1,2 +1,6 @@
 pytest test_account.py
-pytest 
+pytest test_ambiente_tab.py
+pytest test_energy_tab.py
+pytest test_governaca_tab.py
+pytest test_social_tab.py
+pytest test_main_tab.py
