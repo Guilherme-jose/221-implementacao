@@ -12,7 +12,7 @@ class login_screen(screen):
         acc = account()
         if acc.login(self.username_entry.get(), self.password_entry.get()):
             self.hide()
-            main = main_screen(self.root)
+            main = main_screen(self.root, acc)
             main.show()
     
     def create_account(self):

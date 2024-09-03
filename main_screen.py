@@ -2,6 +2,7 @@ import os
 import tkinter as tk
 from tkinter import *
 from tkinter import ttk
+import login_screen
 from screen import screen
 from main_tab import main_tab
 from social_tab import social_tab
@@ -11,12 +12,15 @@ from energy_tab import energy_tab
 from PIL import Image, ImageTk
 
 class main_screen(screen):
-    def __init__(self, root):
+    def __init__(self, root, account = None):
         self.root = root
         self.nome_usuario = 'Usuário'
+        self.account = account
+        
         self.tela()
         self.frames_da_tela()
         self.root.mainloop()
+        
 
     def tela(self):
         self.root.title("Verum Cabo")
@@ -82,8 +86,20 @@ class main_screen(screen):
 
         # Adicionar botões para escrever relatórios em cada aba
         self.add_report_buttons()
+        
+        # Log out button
+        self.logout_button = Button(self.frame_2, text="Log Out", command=self.logout)
+        self.logout_button.pack(side=BOTTOM, pady=10)
+        
+    def logout(self):
+        self.account.logout()
+        self.hide()
+        ls = login_screen.login_screen(self.root)
+        ls.show()
+        
 
     def add_report_buttons(self):
+        return
         tabs = [self.tab_main, self.tab_ambiente, self.tab_social, self.tab_governanca, self.tab_relatorios]
         tab_names = ["Main", "Ambiente", "Social", "Governança", "Relatórios"]
         
@@ -132,3 +148,9 @@ class main_screen(screen):
         text_widget = Text(tab, wrap=WORD)
         text_widget.insert(INSERT, report_text)
         text_widget.pack(expand=1, fill=BOTH)
+        
+    def hide(self):
+        self.frame_1.place_forget()
+        self.frame_2.place_forget()
+        self.frame_3.place_forget()
+        

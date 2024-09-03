@@ -115,4 +115,10 @@ class account:
         self.verified = False
         print("Unregistered!")
         
+    def logout(self):
+        self.username = ''
+        self.password = ''
+        self.email = ''
+        self.phone_number = ''
+        self.verified = False
     
