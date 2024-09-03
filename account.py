@@ -57,25 +57,32 @@ class account:
         return False
                
     def register(self, username, password, email, phone_number):
-        if(username == "" or password == "" or email == "" or phone_number == "" 
-           or len(password) < 4 or '@' not in email or '.' not in email or 
-            (len(phone_number) != 10 and len(phone_number) != 11)) : 
+        with open('accounts.txt', 'r') as f:
+            conteudo = f.read()
+        
+        if username in conteudo:
+            #self.pop_up("Este usuário já está registrado")
             return False
-        else :
-            print(f"Registering as {username}...")
-            
-            with open('accounts.txt', 'a') as f:
-                f.write(f"{username}, {password}, {email}, {phone_number}\n")
+        else:
+            if(username == "" or password == "" or email == "" or phone_number == "" 
+            or len(password) < 4 or '@' not in email or '.' not in email or 
+                (len(phone_number) != 10 and len(phone_number) != 11)) : 
+                return False
+            else :
+                print(f"Registering as {username}...")
+                
+                with open('accounts.txt', 'a') as f:
+                    f.write(f"{username}, {password}, {email}, {phone_number}\n")
 
-            with open('users.txt', 'a') as f:
-                f.write(f"{username}, ")
-            
-            self.send_verification_email()
-            self.username = username
-            self.password = password
-            self.email = email
-            self.phone_number = phone_number
-            return True
+                with open('users.txt', 'a') as f:
+                    f.write(f"{username}, ")
+                
+                self.send_verification_email()
+                self.username = username
+                self.password = password
+                self.email = email
+                self.phone_number = phone_number
+                return True
 
         
     def unregister(self, username):
