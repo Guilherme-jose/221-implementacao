@@ -20,6 +20,7 @@ def test_login(setup_account) :
 def test_register(setup_account) :
     acc = setup_account
     
+
     assert acc.register("new_account", "1234", "a@a.com", "1234567890") == True
     acc.unregister("new_account")
     assert acc.register("", "1234", "a@a.com", "1234567890") == False
