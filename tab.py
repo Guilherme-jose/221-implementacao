@@ -2,7 +2,7 @@ import tkinter as tk
 import os
 import shutil
 from tkinter import Toplevel, ttk, filedialog
-
+import json
 from activity import activity
 from consumo import consumo
 
@@ -133,26 +133,23 @@ class tab:
     def display_activities(self, type):
         for i in self.acts:
             i.pack_forget()
-
+        
         if self.type == 'energy':
-            f = open('activities.txt', 'r')
-            activities = f.readlines()
-            f.close()
+            with open('activities.json', 'r') as f:
+                activities = json.loads(f.read())
+                
             for act in activities:
-                act = act.split(',')
-                if act[0] == type:
-                    act_label = ttk.Label(self.root, text=act[1] + ' ' + act[2])
+                if act['type'] == type:
+                    act_label = ttk.Label(self.root, text=act['consumos'] + ' ' + act['periodo'])
                     act_label.pack()
                     self.acts.append(act_label)
-
         else:
-            f = open('activities.txt', 'r')
-            activities = f.readlines()
-            f.close()
+            activities = []
+            with open('activities.json', 'r') as f:
+                activities = json.loads(f.read())
+            
             for act in activities:
-                act = act.split(',')
-                if act[0] == type:
-                    act_label = ttk.Label(self.root, text=act[1] + ' ' + act[2] + ' ' + act[3] + ' ' + act[4] + ' ' + act[5] + ' ' + act[6])
+                if act['type'] == type:
+                    act_label = ttk.Label(self.root, text=act['name'] + ' ' + act['value'] + ' ' + act['asignee'] + ' ' + act['beneficiary'] + ' ' + act['local'] + ' ' + act['date'])
                     act_label.pack()
                     self.acts.append(act_label)
-

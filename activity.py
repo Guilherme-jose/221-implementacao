@@ -1,3 +1,5 @@
+import json
+
 class activity:
     def __init__(self, name, value, asignee, beneficiary, local, date, type='None', description = '', file=[]):
         self.name = name
@@ -11,5 +13,10 @@ class activity:
         self.file = file
         
     def register(self):
-        with open('activities.txt', 'a', encoding='utf-8') as f:
-            f.write(f"{self.type}, {self.name}, {self.value}, {self.asignee}, {self.beneficiary}, {self.local}, {self.date}, {self.description}, {self.file}\n")
+        with open('activities.json', 'r', encoding='utf-8') as f:
+            activities = json.loads(f.read())
+            activities.append({'type': self.type, 'name': self.name, 'value': self.value, 'asignee': self.asignee, 'beneficiary': self.beneficiary, 'local': self.local, 'date': self.date, 'description': self.description, 'file': self.file})
+            
+        with open('activities.json', 'w+', encoding='utf-8') as f:
+            f.write(json.dumps(activities, indent=True))
+    
