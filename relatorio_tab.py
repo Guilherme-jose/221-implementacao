@@ -1,6 +1,7 @@
 from tab import tab
 from tkinter import ttk
 from fpdf import FPDF
+import json
 
 class relatorio_tab(tab):
     def __init__(self, root):
@@ -9,10 +10,11 @@ class relatorio_tab(tab):
     def show(self):
         gerar_relatorio_button = ttk.Button(self.root, text="Gerar Relatório", command=self.gerar_relatorio)
         gerar_relatorio_button.pack()
+        
 
     def gerar_relatorio(self):
-        with open('activities.txt', 'r') as file:
-            activities = file.read().splitlines()
+        with open('activities.json', 'r', encoding='utf-8') as f:
+            activities = json.loads(f.read())
 
         pdf = FPDF()
 
@@ -25,8 +27,7 @@ class relatorio_tab(tab):
 
         pdf.set_font('Arial', '', 12)
         for activity in activities:
-            if activity[0] == 'social' or activity[0] == 'ambiente' or activity[0] == 'governanca':
-                activity = activity.split(',')
-                pdf.cell(0, 10, f'{activity[1]}: {activity[7]}', ln=True)
+            if activity['type'] == 'social' or activity['type'] == 'ambiente' or activity['type'] == 'governanca':
+                pdf.multi_cell(0, 10, f'{list(activity.values())}')
 
         pdf.output('relatorio.pdf')

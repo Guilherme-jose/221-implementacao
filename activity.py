@@ -9,7 +9,7 @@ class activity:
         self.local = local
         self.date = date
         self.type = type
-        self.description = description.replace('\n', ' ')
+        self.description = description
         self.file = file
         self.account = account
         

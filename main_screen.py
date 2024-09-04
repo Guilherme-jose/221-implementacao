@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import *
 from tkinter import ttk
 import login_screen
+from relatorio_tab import relatorio_tab
 from screen import screen
 from main_tab import main_tab
 from social_tab import social_tab
@@ -80,6 +81,9 @@ class main_screen(screen):
 
         st = energy_tab(tabs_ref[5], account=self.account)
         st.show()
+        
+        rt = relatorio_tab(tabs_ref[4])
+        rt.show()
         
         # Colocar o Notebook dentro do frame_1
         self.tab_control.place(relwidth=1, relheight=1)

@@ -79,6 +79,11 @@ class tab:
             data_entry = ttk.Entry(popup_window)
             data_entry.pack()
             
+            description_label = ttk.Label(popup_window, text='Descrição:')
+            description_label.pack()
+            description_text_box = tk.Text(popup_window, height=10, width=50)
+            description_text_box.pack()
+            
             upload_button = ttk.Button(popup_window, text='Adicionar anexo', command=upload_file)
             upload_button.pack(side=tk.RIGHT)
             
@@ -95,6 +100,7 @@ class tab:
                 beneficiario = beneficiario_entry.get()
                 local = local_entry.get()
                 data = data_entry.get()
+                description_text_box_content = description_text_box.get("1.0", "end-1c")
             
             if self.type == 'energy':
                 file = ';'.join(self.file)
@@ -105,7 +111,7 @@ class tab:
             else:
                 file = ';'.join(self.file)
                 self.file = []
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, self.type, '', file, self.account.get_username())
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, self.type, description_text_box_content, file, self.account.get_username(), )
                 act.register()
                 del act
 
@@ -120,22 +126,17 @@ class tab:
         for i in self.acts:
             i.pack_forget()
         
-        if self.type == 'energy':
-            with open('activities.json', 'r') as f:
-                activities = json.loads(f.read())
-                
-            for act in activities:
-                if act['type'] == type:
+        with open('activities.json', 'r') as f:
+            activities = json.loads(f.read())
+        
+        
+        for act in activities:      
+            if act['type'] == type and act['account'] == self.account.get_username():
+                if self.type == 'energy':
                     act_label = ttk.Label(self.root, text=act['consumos'] + ' ' + act['periodo'])
                     act_label.pack()
                     self.acts.append(act_label)
-        else:
-            activities = []
-            with open('activities.json', 'r') as f:
-                activities = json.loads(f.read())
-            
-            for act in activities:
-                if act['type'] == type:
+                else:
                     act_label = ttk.Label(self.root, text=act['name'] + ' ' + act['value'] + ' ' + act['asignee'] + ' ' + act['beneficiary'] + ' ' + act['local'] + ' ' + act['date'])
                     act_label.pack()
                     self.acts.append(act_label)
