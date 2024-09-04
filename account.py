@@ -122,3 +122,5 @@ class account:
         self.phone_number = ''
         self.verified = False
     
+    def get_username(self):
+        return self.username

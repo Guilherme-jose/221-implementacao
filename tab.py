@@ -8,9 +8,10 @@ from consumo import consumo
 
 
 class tab:
-    def __init__(self, root, type = ''):
+    def __init__(self, root, type = '', account = None):
         self.root = root
         self.type = type
+        self.account = account
         self.acts = []
         self.file = []
         
@@ -95,34 +96,19 @@ class tab:
                 local = local_entry.get()
                 data = data_entry.get()
             
-            
-            if self.type == 'social':
-                file = ';'.join(self.file)
-                self.file = []
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'social', '', file)
-                act.register()
-                del act
-
-            elif self.type == 'ambiente':
-                file = ';'.join(self.file)
-                self.file = []
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'ambiente', '', file)
-                act.register()
-                del act
-
-            elif self.type == 'energy':
+            if self.type == 'energy':
                 file = ';'.join(self.file)
                 self.file = []
                 act = consumo(consumos, periodo, 'energy', file)
                 act.register()
                 del act
-
             else:
                 file = ';'.join(self.file)
                 self.file = []
-                act = activity(titulo, valor, responsavel, beneficiario, local, data, 'governança', '', file)
+                act = activity(titulo, valor, responsavel, beneficiario, local, data, self.type, '', file, self.account.get_username())
                 act.register()
                 del act
+
             
             popup_window.destroy()
             self.display_activities(self.type)

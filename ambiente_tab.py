@@ -3,8 +3,8 @@ import tkinter as tk
 from tab import tab
 
 class ambiente_tab(tab):
-    def __init__(self, root, type='ambiente'):
-        super().__init__(root, type)
+    def __init__(self, root, type='ambiente', account=None):
+        super().__init__(root, type, account)
         
     def show(self):
         ttk.Label(self.root, text='Feitos Ambientais').pack()

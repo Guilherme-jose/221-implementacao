@@ -4,8 +4,8 @@ from tab import tab
 from activity import activity
 
 class social_tab(tab):
-    def __init__(self, root, type='social'):
-        super().__init__(root, type)
+    def __init__(self, root, type='social', account = None):
+        super().__init__(root, type, account)
         
     def show(self):
         ttk.Label(self.root, text='Social Tab').pack()

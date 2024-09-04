@@ -69,16 +69,16 @@ class main_screen(screen):
         mt = main_tab(tabs_ref[0])
         mt.show()
 
-        st = ambiente_tab(tabs_ref[1])
+        st = ambiente_tab(tabs_ref[1], account=self.account)
         st.show()
         
-        st = social_tab(tabs_ref[2])
+        st = social_tab(tabs_ref[2], account=self.account)
         st.show()
 
-        st = governanca_tab(tabs_ref[3])
+        st = governanca_tab(tabs_ref[3], account=self.account)
         st.show()
 
-        st = energy_tab(tabs_ref[5])
+        st = energy_tab(tabs_ref[5], account=self.account)
         st.show()
         
         # Colocar o Notebook dentro do frame_1
